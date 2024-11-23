@@ -20,12 +20,11 @@ export async function compressVideo(inputPath, chunkDir, chunkSize = 10) {
         "segment", // Use segmenting format
         "-reset_timestamps",
         "1" // Reset timestamps for each chunk
-      ).videoCodec('libx264').audioCodec('aac')
+      ).videoCodec('libx264')
+      .audioCodec('aac')
+      .audioBitrate('128k')
       .size("50%")
-      .on("progress", (progress) => {
-        // Send compression progress back to client
-        res.write(`data: ${JSON.stringify(progress)}\n\n`);
-      })
+      .preset('fast')
        // Compress size to 70%
       .on("end", () => {
         console.log("Splitting and compression complete");
