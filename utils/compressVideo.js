@@ -26,7 +26,7 @@ export async function compressVideo(inputPath, chunkDir, chunkSize = 10) {
         // Send compression progress back to client
         res.write(`data: ${JSON.stringify(progress)}\n\n`);
       })
-      .on( // Compress size to 70%
+       // Compress size to 70%
       .on("end", () => {
         console.log("Splitting and compression complete");
         resolve();
