@@ -20,8 +20,8 @@ export async function compressVideo(inputPath, chunkDir, chunkSize = 10) {
         "segment", // Use segmenting format
         "-reset_timestamps",
         "1" // Reset timestamps for each chunk
-      )
-      .size("70%") // Compress size to 70%
+      ).videoCodec('libx264').audioCodec('aac')
+      .size("50%") // Compress size to 70%
       .on("end", () => {
         console.log("Splitting and compression complete");
         resolve();
